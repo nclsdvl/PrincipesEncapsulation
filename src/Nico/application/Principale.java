@@ -53,7 +53,7 @@ public class Principale {
 
         Utilitaires.afficherBoiteDeDialogue( jean.toString(), "nouvelle adresse");
 
-        nathalie.setAdresse(adresse1);
+        nathalie.setAdresse(new Adresse(2, "rue vicxtor", 45250, "nancy"));
 
         Utilitaires.afficherBoiteDeDialogue(bernard.toString() + "\n" + nathalie.toString(), "Vive les marriés !!");
 
