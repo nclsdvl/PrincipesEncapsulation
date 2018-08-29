@@ -1,4 +1,5 @@
 package Nico.entites;
+import Nico.entites.Adresse;
 
 public class Personne {
 
@@ -6,6 +7,9 @@ public class Personne {
     private String societe;
     private static final String PAS_DE_SOCIETE = "?";
     private final String nom;
+    int age;
+    Adresse adresse;
+    String prenom;
 
 
 //----------------------Constructeur---------------------------//
@@ -20,16 +24,48 @@ public class Personne {
         this.nom = nom.toUpperCase();
         this.societe = "?";
     }
+
+    public Personne (String nom, String prenom, int age, Adresse adresse ){
+        this.nom = nom.toUpperCase();
+        this.prenom = prenom;
+        this.age = age;
+        this.adresse = adresse;
+
+
+
+    }
 //----------------------Getters---------------------//
 
     public String getNom() {
         return nom;
     }
-    public String getSociete() {
-        return societe;
+    public String getSociete() {return societe;}
+    public int getAge() {return age;}
+    public Adresse getAdresse() { return adresse; }
+
+
+    @Override
+    public  String toString(){
+        return prenom + " " + nom + " " +  age + " ans\n" + adresse.toString();
     }
 
-//----------------------Setters--------------------//
+    //----------------------Setters--------------------//
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
 
     public void setSociete(String societe) {
         if (PAS_DE_SOCIETE.equals(this.societe)){
@@ -61,14 +97,14 @@ public class Personne {
     }
 
     private void validerSociete(String societe){
-        if ((societe.length()<= 30)) {
+        if ((societe.length()<= 30) && !societe.equals(PAS_DE_SOCIETE)) {
             this.societe = societe.toUpperCase();
         }
-     /*   else if(!societe.equals(PAS_DE_SOCIETE)){
-            System.out.println("on ne peut pas integrer une seconde entreprise!!!! RESULTAT ---> BUG");
-            System.out.println("il faut demissionner avant!!!!");
-            System.exit(1);
-        }*/
+        else if(societe.equals(PAS_DE_SOCIETE)){
+            System.out.println("Il n'existe pas de societe ayant pour nom : ? RESULTAT ---> BUG");
+
+            System.exit(6);
+        }
         else {
             System.out.println("le nom de la societe doit faire moins de 30 caracteres et different de '?'!!!! RESULTAT ---> BUG");
             System.out.println("le nom de societe posant probleme est : " + societe);
